@@ -129,13 +129,19 @@ app.get(
                 return res.redirect("/");
             }
 
-            // Passport is reattached after regeneration.
             req.login(req.user, (loginError) => {
                 if (loginError) {
                     console.error("Login failed:", loginError);
                     return res.redirect("/");
                 }
-                res.redirect("/game");
+                
+                req.session.save((saveError) => {
+                    if (saveError) {
+                        console.error("Session save failed:", saveError);
+                        return res.redirect("/");
+                    }
+                    res.redirect("/game");
+                });
             });
         });
     }
@@ -167,8 +173,6 @@ app.get("/api/me", requireAuth, async (req, res) => {
     }
 });
 
-// IMPORTANT: every query is scoped to the authenticated GitHub account.
-// The browser never supplies githubId as an ownership field.
 app.get("/api/data", requireAuth, async (req, res) => {
     try {
         const rows = await Score.find({ githubId: req.user.githubId })
@@ -181,8 +185,6 @@ app.get("/api/data", requireAuth, async (req, res) => {
     }
 });
 
-// A login session can create at most one score.
-// sessionId is server-controlled and has a unique MongoDB index.
 app.post("/api/data", requireAuth, async (req, res) => {
     try {
         const name = cleanName(req.body.name);
