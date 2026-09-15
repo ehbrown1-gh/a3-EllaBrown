@@ -73,8 +73,8 @@ app.use(
         store: MongoStore.create({ mongoUrl: MONGODB_URI }),
         cookie: {
             httpOnly: true,
-            sameSite: "lax",
-            secure: process.env.NODE_ENV === "production",
+            sameSite: "lax", 
+            secure: process.env.NODE_ENV === "production" || req?.headers['x-forwarded-proto'] === 'https',
             maxAge: 1000 * 60 * 60 * 24
         }
     })
@@ -123,7 +123,6 @@ app.get(
     "/auth/github/callback",
     passport.authenticate("github", { failureRedirect: "/" }),
     (req, res) => {
-        // 1. Temporarily save the authenticated user details from passport
         const authenticatedUser = req.user; 
 
         req.session.regenerate((error) => {
@@ -132,14 +131,12 @@ app.get(
                 return res.redirect("/");
             }
 
-            // 2. Re-login using the saved user credentials to reattach to the new session
             req.login(authenticatedUser, (loginError) => {
                 if (loginError) {
                     console.error("Login failed:", loginError);
                     return res.redirect("/");
                 }
                 
-                // 3. Force the session store to finalize before sending the browser redirect
                 req.session.save((saveError) => {
                     if (saveError) {
                         console.error("Session save failed:", saveError);
