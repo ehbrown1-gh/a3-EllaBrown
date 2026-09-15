@@ -649,5 +649,16 @@ resetButton.addEventListener(
     }
 );
 
-loadData();
-createGame();
+async function init() {
+    try {
+        await loadAccount(); 
+        
+        await loadData(); 
+        
+        createGame(); 
+    } catch (error) {
+        console.error("Initialization failed:", error);
+    }
+}
+
+init();
