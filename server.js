@@ -123,18 +123,23 @@ app.get(
     "/auth/github/callback",
     passport.authenticate("github", { failureRedirect: "/" }),
     (req, res) => {
+        // 1. Temporarily save the authenticated user details from passport
+        const authenticatedUser = req.user; 
+
         req.session.regenerate((error) => {
             if (error) {
                 console.error("Session regeneration failed:", error);
                 return res.redirect("/");
             }
 
-            req.login(req.user, (loginError) => {
+            // 2. Re-login using the saved user credentials to reattach to the new session
+            req.login(authenticatedUser, (loginError) => {
                 if (loginError) {
                     console.error("Login failed:", loginError);
                     return res.redirect("/");
                 }
                 
+                // 3. Force the session store to finalize before sending the browser redirect
                 req.session.save((saveError) => {
                     if (saveError) {
                         console.error("Session save failed:", saveError);
