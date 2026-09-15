@@ -1,0 +1,458 @@
+/*GLOBAL*/
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f4f1e8;
+    color: #211b16;
+    font-family: "Caudex", Georgia, serif;
+}
+
+header {
+    text-align: center;
+    padding: 24px 16px 12px;
+}
+
+h1,
+h2,
+h3,
+.title {
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 20px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 50px;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+header p {
+    margin: 5px 0 0;
+}
+
+
+/*ACCOUNT AND LOGIN*/
+
+#account-area {
+    margin-top: 15px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+
+    font-family: "Pixelify Sans", sans-serif;
+}
+
+#account-area span {
+    font-size: 18px;
+}
+
+#account-area button {
+    margin: 0;
+}
+
+
+/*GENERAL*/
+
+main {
+    width: min(1200px, 94%);
+    margin: 0 auto 40px;
+}
+
+.rules-box {
+    margin-bottom: 20px;
+}
+
+.rules-box p {
+    margin-top: 8px;
+}
+
+.rules-box ul {
+    margin-bottom: 0;
+}
+
+
+/*GAME*/
+
+#game-box {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#game-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+
+    overflow: hidden;
+
+    border: 10px solid saddlebrown;
+    border-radius: 12px;
+    background: #bad7dd;
+}
+
+#game-container canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+#score-text {
+    margin: 14px 0 8px;
+
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 48px;
+    line-height: 1;
+}
+
+#timer-text {
+    margin-bottom: 14px;
+
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 24px;
+}
+
+
+/*BUTTONS*/
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+#reset-button {
+    margin-bottom: 5px;
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 20px;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+/*SCORE SUBMISSION*/
+
+.submit-score {
+    margin-bottom: 20px;
+}
+
+.submit-score .title {
+    font-size: 24px;
+}
+
+#submission-status {
+    margin: 10px 0 15px;
+    font-size: 16px;
+}
+
+#score-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#score-form label {
+    margin-top: 6px;
+
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 18px;
+}
+
+#score-form input {
+    width: 100%;
+    margin-bottom: 4px;
+}
+
+#score-form button {
+    align-self: flex-start;
+    margin-top: 8px;
+
+    font-family: "Pixelify Sans", sans-serif;
+}
+
+
+/*INPUTS*/
+
+input,
+textarea {
+    width: 100%;
+
+    border: 2px solid #211b16;
+    border-radius: 8px;
+
+    padding: 10px;
+
+    background: #fffdf7;
+    color: #211b16;
+}
+
+input:focus,
+textarea:focus {
+    outline: 3px solid rgba(139, 69, 19, 0.25);
+    outline-offset: 2px;
+}
+
+
+/*DATA AND LEADERBOARD*/
+
+.data-box {
+    margin-bottom: 20px;
+}
+
+.data-box .title {
+    font-size: 24px;
+}
+
+.data-box > p {
+    margin-top: 8px;
+}
+
+
+/*LEADERBOARD*/
+
+.leaderboard {
+    margin: 12px 0 0;
+    padding-left: 30px;
+
+    display: grid;
+    gap: 8px;
+
+    font-size: 18px;
+}
+
+.leaderboard li {
+    padding: 4px 0;
+}
+
+.leaderboard li::marker {
+    font-family: "Pixelify Sans", sans-serif;
+}
+
+
+/*DATA TABLE*/
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 12px;
+}
+
+table {
+    width: 100%;
+    min-width: 650px;
+
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid #211b16;
+
+    padding: 10px;
+
+    text-align: left;
+    vertical-align: middle;
+}
+
+th {
+    background: #e8e2d3;
+
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 17px;
+}
+
+tbody tr:nth-child(even) {
+    background: #faf8f1;
+}
+
+tbody tr:hover {
+    background: #eee9dc;
+}
+
+
+/*TABLE ACTIONS*/
+
+.actions {
+    white-space: nowrap;
+}
+
+.actions button {
+    margin-right: 5px;
+    margin-bottom: 4px;
+
+    padding: 6px 10px;
+
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 14px;
+}
+
+.actions button:last-child {
+    margin-right: 0;
+}
+
+.actions .nes-btn {
+    min-width: auto;
+}
+
+
+/*LOGIN PAGE*/
+
+body:has(#account-area) {
+    min-height: 100vh;
+}
+
+body:has(.nes-container[style*="max-width"]) main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 70vh;
+}
+
+body:has(.nes-container[style*="max-width"]) .nes-container {
+    width: min(600px, 100%);
+    text-align: center;
+}
+
+body:has(.nes-container[style*="max-width"]) h1 {
+    margin-bottom: 15px;
+}
+
+body:has(.nes-container[style*="max-width"]) p {
+    margin-bottom: 25px;
+}
+
+
+/*NES.CSS*/
+
+.nes-container {
+    background: lightblue;
+}
+
+.nes-container.with-title > .title,
+.nes-container > .title {
+    background: #fffdf7;
+}
+
+.nes-btn {
+    font-family: "Pixelify Sans", sans-serif;
+}
+
+
+/*RESPONSIVE*/
+
+@media (max-width: 850px) {
+    header {
+        padding-top: 18px;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+
+    main {
+        width: 96%;
+    }
+
+    #game-container {
+        border-width: 7px;
+    }
+
+    #score-text {
+        font-size: 40px;
+    }
+
+    #timer-text {
+        font-size: 20px;
+    }
+}
+
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 34px;
+    }
+
+    #account-area {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    #account-area span {
+        font-size: 15px;
+    }
+
+    #score-text {
+        font-size: 34px;
+    }
+
+    #timer-text {
+        font-size: 18px;
+    }
+
+    .rules-box,
+    .submit-score,
+    .data-box {
+        padding: 15px;
+    }
+
+    .data-box .title,
+    .submit-score .title {
+        font-size: 20px;
+    }
+
+    .leaderboard {
+        font-size: 16px;
+        padding-left: 25px;
+    }
+
+    #score-form button {
+        width: 100%;
+    }
+
+    .actions button {
+        display: block;
+        width: 100%;
+        margin-right: 0;
+    }
+}
+
+
+/*ACCESSIBILITY*/
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+    outline: 3px solid #211b16;
+    outline-offset: 3px;
+}
+
+
+/*REDUCED MOTION*/
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+        animation: none !important;
+    }
+}
